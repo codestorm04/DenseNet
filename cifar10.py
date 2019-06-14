@@ -27,6 +27,9 @@ growth_rate = 12
 nb_filter = -1
 dropout_rate = 0.0 # 0.0 for data augmentation
 
+(trainX, trainY), (testX, testY) = cifar10.load_data()
+
+
 model = densenet.DenseNet(img_dim, classes=nb_classes, depth=depth, nb_dense_block=nb_dense_block,
                           growth_rate=growth_rate, nb_filter=nb_filter, dropout_rate=dropout_rate, weights=None)
 print("Model created")
@@ -37,7 +40,6 @@ model.compile(loss='categorical_crossentropy', optimizer=optimizer, metrics=["ac
 print("Finished compiling")
 print("Building model...")
 
-(trainX, trainY), (testX, testY) = cifar10.load_data()
 
 trainX = trainX.astype('float32')
 testX = testX.astype('float32')
